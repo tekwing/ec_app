@@ -1,0 +1,44 @@
+
+/*# sourceMappingURL=custom.min.css.map */
+
+/* info icon */
+.ri-information-line {
+    color: #0E86BC;
+}
+
+.btn-add {
+    --vz-btn-bg: #a6efb6;
+    --vz-btn-border-color: var(--vz-light);
+    --vz-btn-hover-bg: #6cf88a;
+    --vz-btn-hover-border-color: var(--vz-light-text-emphasis);
+    --vz-btn-focus-shadow-rgb: var(--vz-light-rgb);
+    --vz-btn-active-bg: #a6efb6;
+    --vz-btn-active-border-color: var(--vz-light-text-emphasis)
+}
+
+.btn-delete {
+    --vz-btn-bg: #ef9595;
+    --vz-btn-border-color: var(--vz-light);
+    --vz-btn-hover-bg: #f35b5b;
+    --vz-btn-hover-border-color: var(--vz-light-text-emphasis);
+    --vz-btn-focus-shadow-rgb: var(--vz-light-rgb);
+    --vz-btn-active-bg: #ef9595;
+    --vz-btn-active-border-color: var(--vz-light-text-emphasis)
+}
+
+.menu-progress {
+    height: 5px;
+    /* padding: 4px; */
+    border-radius: 30px;
+}
+
+.xIcon_setting{
+    color:#f35b5b;
+    font-size:15px;
+}
+
+.vIcon_setting{
+    color:#6cf88a;
+    font-size:15px;
+}
+

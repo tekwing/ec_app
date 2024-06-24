@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel to DataTables</title>
+    <!-- DataTables CSS -->
+    <style>
+    /* CSS for table container */
+    .table-container {
+        border: 1px solid #ccc;
+        overflow: auto;
+        max-height: 300px; /* Adjust max height as needed */
+    }
+
+    /* CSS for table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    /* CSS for headings */
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+</style>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+
+</head>
+<body>
+    <div id="tablesContainer"></div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <!-- SheetJS (XLSX) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+    <script>
+$(document).ready(function () {
+    // Function to read Excel file and create separate tables for each row
+    function createTablesFromExcel(file) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            try {
+                var data = new Uint8Array(e.target.result);
+                var workbook = XLSX.read(data, { type: 'array' });
+
+                workbook.SheetNames.forEach(function (sheetName) {
+                    var excelRows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+                    excelRows.forEach(function (row, index) {
+                        var container = $('<div>').appendTo('#tablesContainer'); // Container for table and heading
+                        var heading1 = $('<h3>').text(' - ').appendTo(container); // Create heading for the table
+                        var heading2 = $('<h3>').text(' - ').appendTo(container); // Create heading for the table
+                        var table = $('<table>').appendTo(container);
+                        var thead = $('<thead>').appendTo(table);
+                        var tbody = $('<tbody>').appendTo(table);
+
+                        // Create table headers
+                        var headers = Object.keys(row);
+                        headers.push("Actions"); // Add "Actions" at the end of the headers array
+
+                        var headerRow = $('<tr>').appendTo(thead);
+                        headers.forEach(function (header) {
+                            $('<th>').text(header).appendTo(headerRow);
+                        });
+
+                        // Populate table with row data
+                        var rowElement = $('<tr>').appendTo(tbody);
+                        var firstColumnData; // Variable to store data from the first column
+                        headers.forEach(function (header, columnIndex) {
+                            if (header === "Actions") {
+                                $('<td>').html('<a href="#">Add</a> <a href="#">Add</a> <a href="#">Add</a>').appendTo(rowElement);
+                            } else {
+                                var cellData = row[header];
+                                // Check if it's the first column
+                                if (columnIndex === 0) {
+                                    firstColumnData = cellData; // Store data from the first column
+                                } else if (columnIndex === 1) {
+                                    secondColumnData = cellData; // Store data from the second column
+                                }
+                                // Handle date formatting if needed
+                                var isDateColumn = /date|day|month|year/i.test(header);
+                                if (isDateColumn && !isNaN(cellData) && typeof cellData === 'number') {
+                                    var excelDate = new Date((cellData - 25569) * 86400 * 1000); // Convert Excel serial date to JavaScript Date object
+                                    var day = excelDate.getDate();
+                                    var month = excelDate.getMonth() + 1; // Months are zero-based, so we add 1
+                                    var year = excelDate.getFullYear();
+                                    // Ensure leading zeroes for single-digit day and month
+                                    var formattedDate = (day < 10 ? '0' : '') + day + '/' + (month < 10 ? '0' : '') + month + '/' + year;
+                                    cellData = formattedDate;
+                                }
+                                $('<td>').text(cellData).appendTo(rowElement);
+                            }
+                        });
+
+                        // Append data from the first and second column to <h> tags
+                        $('<h>').text(firstColumnData).appendTo(heading1);
+                        $('<h>').text(secondColumnData).appendTo(heading2);
+                    });
+                });
+            } catch (error) {
+                console.error("Error processing Excel file:", error);
+                alert("Error processing Excel file. Please check the console for details.");
+            }
+        };
+        reader.onerror = function (e) {
+            console.error("File reading error:", e.target.error);
+            alert("File reading error. Please check the console for details.");
+        };
+        reader.readAsArrayBuffer(file);
+    }
+
+    // Event listener for file input change
+    $('#fileInput').change(function () {
+        var file = this.files[0];
+        if (file) {
+            createTablesFromExcel(file);
+        } else {
+            alert("No file selected.");
+        }
+    });
+});
+</script>
+
+
+    <!-- File input to upload Excel file -->
+    <input type="file" id="fileInput" accept=".xls,.xlsx">
+</body>
+</html>
