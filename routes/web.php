@@ -34,8 +34,12 @@ Route::get('/add_form_document', [UiController::class, 'add_form_document'])->na
 Route::get('/study_registration_form', [UiController::class, 'study_registration_form'])->name('study_registration_form');
 Route::get('/submissions', [UiController::class, 'submissions'])->name('submissions');
 Route::get('/faq', [UiController::class, 'faq'])->name('faq');
+Route::get('/form_sections', [UiController::class, 'form_sections'])->name('form_sections');
+
+
 Route::get('/initial_form', [UiController::class, 'initial_form'])->name('initial_form');
-Route::get('/initial_review_form', [UiController::class, 'initial_review_form'])->name('initial_review_form');
+
+Route::get('/editor', [UiController::class, 'editor'])->name('editor');
 
 Route::post('/save-html', [FormsAndDocumentsController::class, 'saveHtmlCard'])->name('saveHtmlCard');
 

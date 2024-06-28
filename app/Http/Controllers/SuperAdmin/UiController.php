@@ -118,13 +118,24 @@ class UiController extends Controller
     public function add_form_document()
     {
         $data['page_name']="add_form_document";
-       // $data['items'] = FormsAndDocuments::all()->pluck('html_content')->toArray();
         return view('SuperAdmin.add_form_document',$data);
+    }
+
+    public function form_sections()
+    {
+        $data['page_name']="form_sections";
+        return view('SuperAdmin.form_sections',$data);
     }
 
     public function study_registration_form()
     {
         $data['page_name']="study_registration_form";
         return view('SuperAdmin.study_registration_form',$data);
+    }
+
+    public function editor()
+    {
+        $data['page_name']="editor";
+        return view('SuperAdmin.editor',$data);
     }
 }

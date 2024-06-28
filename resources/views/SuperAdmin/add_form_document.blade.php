@@ -24,6 +24,18 @@
             display: block;
         }
 
+        
+        .dotted-line {
+            display: flex;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        .dotted-line span {
+            flex-grow: 1;
+            border-bottom: 1px dotted black;
+            margin-left: 5px;
+        }
+
   </style>
 
 <style>
@@ -84,7 +96,7 @@
                                                 <tr>
                                                     <td>01</td>
                                                     <td class="text-center">Initial Review</td>
-                                                    <td class="text-center"><a class="btn btn-sm btn-success" href="{{route('initial_review_form')}}">View</a></td>
+                                                    <td class="text-center"><a class="btn btn-sm btn-success" data-bs-toggle="modal" data-file="InitialReview.pdf" data-bs-target=".bs-example-modal-xl" href="#">View</a></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -117,61 +129,61 @@
                                             <tr>
                                                 <td>02</td>
                                                 <td>Continuing Review / Annual report format</td>
-                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-bs-toggle="modal" data-bs-target="#addform">Add</button></td>
+                                                <td class="text-center"><a class="btn btn-sm btn-success" data-file="3ContinuingReviewAnnualreportformat.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl" href="#">View</a></td>
                                             </tr>
 
                                             <tr>
                                                 <td>03</td>
                                                 <td>Application/Notification form for Amendments</td>
-                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-bs-toggle="modal" data-bs-target="#addform">Add</button></td>
+                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-file="ApplicationNotificationformforAmendments.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl">View</button></td>
                                             </tr>
 
                                             <tr>
                                                 <td>04</td>
                                                 <td>Protocol Violation/Deviation Reporting form (Reporting by case)</td>
-                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-bs-toggle="modal" data-bs-target="#addform">Add</button></td>
+                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-file="ProtocolViolationDeviationReportingformReportingbycase.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl">View</button></td>
                                             </tr>
 
                                             <tr>
                                                 <td>05</td>
                                                 <td>Serious Adverse Event Reporting Format (Biomedical Health Research)</td>
-                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-bs-toggle="modal" data-bs-target="#addform">Add</button></td>
+                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-file="SeriousAdverseEventReportingFormatClinicaltrials.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl">View</button></td>
                                             </tr>
 
                                             <tr>
                                                 <td>06</td>
                                                 <td>Premature Termination/Suspension/ Discontinuation Report Format</td>
-                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-bs-toggle="modal" data-bs-target="#addform">Add</button></td>
+                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-file="PrematureTerminationSuspensionDiscontinuationReportFormat.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl">View</button></td>
                                             </tr>
 
                                             <tr>
                                                 <td>07</td>
                                                 <td>Clinical Trials</td>
-                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-bs-toggle="modal" data-bs-target="#addform">Add</button></td>
+                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-file="ClinicalTrials.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl">View</button></td>
                                             </tr>
 
                                             <tr>
                                                 <td>08</td>
                                                 <td>Serious Adverse Event Reporting Format (Clinical trials)</td>
-                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-bs-toggle="modal" data-bs-target="#addform">Add</button></td>
+                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-file="SeriousAdverseEventReportingFormatClinicaltrials.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl">View</button></td>
                                             </tr>
 
                                             <tr>
                                                 <td>09</td>
                                                 <td>Human Genetics Testing Research</td>
-                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-bs-toggle="modal" data-bs-target="#addform">Add</button></td>
+                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-file="HumanGeneticsTestingResearch.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl">View</button></td>
                                             </tr>
 
                                             <tr>
                                                 <td>10</td>
                                                 <td>Socio-Behavioural and Public Health Research</td>
-                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-bs-toggle="modal" data-bs-target="#addform">Add</button></td>
+                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-file="ApplicationFormforSocio-BehaviouralandPublicHealthResearch.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl">View</button></td>
                                             </tr>
 
                                             <tr>
                                                 <td>11</td>
                                                 <td>Study completion/Final report format</td>
-                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-bs-toggle="modal" data-bs-target="#addform">Add</button></td>
+                                                <td class="text-center"><button class="btn btn-sm btn-success remove-item-btn" data-file="StudycompletionFinalreportformat.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl">View</button></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -798,11 +810,116 @@
             });
         });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+
+    
+<script>
+
+    const pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+
+    // Function to load and render PDF based on file name
+    function loadAndRenderPDF(filename) {
+        const url = `{{ asset('forms_and_documents/') }}/${filename}`;
+        
+        console.log('URL for PDF:', url);
+        const loadingTask = pdfjsLib.getDocument(url);
+
+        loadingTask.promise.then(function(pdf) {
+            const numPages = pdf.numPages;
+            const pdfViewer = document.getElementById('pdfViewer');
+            pdfViewer.innerHTML = ''; // Clear previous pages if any
+
+            // Function to render a single page
+            function renderPage(pageNumber) {
+                pdf.getPage(pageNumber).then(function(page) {
+                    const scale = 1.5;
+                    const viewport = page.getViewport({ scale });
+                    const canvas = document.createElement('canvas');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    const context = canvas.getContext('2d');
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    page.render(renderContext);
+                    pdfViewer.appendChild(canvas);
+
+                    // Move to next page if available
+                    if (pageNumber < numPages) {
+                        renderPage(pageNumber + 1);
+                    }
+                });
+            }
+
+            // Start rendering from the first page
+            renderPage(1);
+        });
+    }
+
+    // Event listener for modal show event
+    document.addEventListener('DOMContentLoaded', function() {
+        const modalEl = document.querySelector('.bs-example-modal-xl');
+        modalEl.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget; // Button that triggered the modal
+            const filename = button.getAttribute('data-file'); // Get data-file attribute value
+            loadAndRenderPDF(filename); // Load and render PDF based on filename
+        });
+    });
+</script>
     
 
 @endsection
 
 @section('modal')
+
+<!-- view form modal -->
+<!--  Large modal example -->
+<div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h5 class="modal-title" id="myLargeModalLabel">Large modal</h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align:right; margin-right:100px;">
+                    <a href="{{route('form_sections')}}" class="btn btn-sm btn-success">Accept</a>
+                </div>
+                <div id="pdfViewer">
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+                <!-- <button type="button" class="btn btn-primary ">Save changes</button> -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade bs-example-modal-xl aa" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h5 class="modal-title" id="myLargeModalLabel">Large modal</h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div> 
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+                <!-- <button type="button" class="btn btn-primary ">Save changes</button> -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <div class="modal fade" id="addform" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
