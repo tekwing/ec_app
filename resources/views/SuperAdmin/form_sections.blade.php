@@ -602,6 +602,126 @@
                                         </div>
                                     </div>
                                     <!--end col-->
+
+                                    <div class="col-xxl-3 col-md-6">
+                                        <div>
+                                            <label for="basiInput" class="form-label">(a) Type of participants in the study</label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Healthy volunteers
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Patients
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Vulnerable persons/ Special groups
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Others
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-md-6">
+                                        <div>
+                                            <label for="basiInput" class="form-label">(b) i. Will there be vulnerable persons / special groups involved ?</label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            YES
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            NO
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            NA
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-md-6">
+                                        <div>
+                                            <label for="basiInput" class="form-label">ii. If yes, type of vulnerable persons / special groups</label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Children under 18 yrs
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Pregnant or lactating women
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Differently abled (Mental/Physical)
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Employees/Students/Nurses/Staff
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Elderly
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Institutionalized
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Economically and socially disadvantaged
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Refugees/Migrants/Homeless
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Terminally ill (stigmatized or rare diseases)
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck6" disabled>
+                                            <label class="form-check-label" for="formCheck6">
+                                            Any other (Specify)
+                                            </label>
+                                        </div>
+                                    </div>
                                     
                                 </div>
                                 <!--end row-->
