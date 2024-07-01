@@ -880,26 +880,20 @@
 <div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <!-- <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Large modal</h5>
+            <div class="modal-header">
+                <!-- <h5 class="modal-title" id="myLargeModalLabel">Large modal</h5> -->
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div> -->
-            <div class="modal-body">
-            <div class="image-container" style="position: relative;">
-                <a href="{{ route('form_sections') }}" class="btn btn-sm btn-success" style="position: absolute; top: 70px; right: 70px; z-index: 10;">Accept</a>
-                <a href="javascript:void(0);" class="btn btn-link link-danger fw-medium" style="position: absolute; top: 65px; right: 125px; z-index: 10;" data-bs-dismiss="modal"> Cancel</a>
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0001.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0002.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0003.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0004.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0005.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0006.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0007.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0008.jpg') }}" alt="Image Title" class="img-fluid">
             </div>
+            <div class="modal-body">
+                <div style="text-align:right; margin-right:100px;">
+                    <a href="{{route('form_sections')}}" class="btn btn-sm btn-success">Accept</a>
+                </div>
+                <div id="pdfViewer">
+                    
+                </div>
             </div>
             <div class="modal-footer">
-                
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
                 <!-- <button type="button" class="btn btn-primary ">Save changes</button> -->
             </div>
         </div><!-- /.modal-content -->
