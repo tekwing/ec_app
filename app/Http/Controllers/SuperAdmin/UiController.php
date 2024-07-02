@@ -121,10 +121,16 @@ class UiController extends Controller
         return view('SuperAdmin.add_form_document',$data);
     }
 
-    public function form_sections()
+    public function form_sections_initial_review()
     {
-        $data['page_name']="form_sections";
-        return view('SuperAdmin.form_sections',$data);
+        $data['page_name']="form_sections_initial_review";
+        return view('SuperAdmin.form_sections_initial_review',$data);
+    }
+
+    public function form_sections_continuing_review()
+    {
+        $data['page_name']="form_sections_continuing_review";
+        return view('SuperAdmin.form_sections_continuing_review',$data);
     }
 
     public function study_registration_form()

@@ -96,7 +96,7 @@
                                                 <tr>
                                                     <td>01</td>
                                                     <td class="text-center">Initial Review</td>
-                                                    <td class="text-center"><a class="btn btn-sm btn-success" data-bs-toggle="modal" data-file="InitialReview.pdf" data-bs-target=".bs-example-modal-xl" href="#">View</a></td>
+                                                    <td class="text-center"><a class="btn btn-sm btn-success" data-bs-toggle="modal" data-file="initial_review_form" data-bs-target=".bs-example-modal-xl" href="#">View</a></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -129,7 +129,7 @@
                                             <tr>
                                                 <td>02</td>
                                                 <td>Continuing Review / Annual report format</td>
-                                                <td class="text-center"><a class="btn btn-sm btn-success" data-file="3ContinuingReviewAnnualreportformat.pdf" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl" href="#">View</a></td>
+                                                <td class="text-center"><a class="btn btn-sm btn-success" data-file="3ContinuingReviewAnnualreportformat" data-bs-toggle="modal" data-bs-target=".bs-example-modal-xl" href="#">View</a></td>
                                             </tr>
 
                                             <tr>
@@ -816,58 +816,73 @@
     
 <script>
 
-    const pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+        function generateImages(filename) {
+            var dataId = filename;
+            var imageContainer = document.getElementById('image-container');
+            imageContainer.innerHTML = ''; // Clear the container
+            const baseUrl = `{{ asset('forms_and_documents/initial_review_form/') }}`;
+            const baseUrl2 = `{{ asset('forms_and_documents/continuing_review_form/') }}`;
+            // Create and append the 'Cancel' button
+            var cancelButton = document.createElement('a');
+                cancelButton.href = "javascript:void(0);";
+                cancelButton.className = "btn btn-link link-danger fw-medium";
+                cancelButton.style.position = "absolute";
+                cancelButton.style.top = "65px";
+                cancelButton.style.right = "125px";
+                cancelButton.style.zIndex = "10";
+                cancelButton.setAttribute("data-bs-dismiss", "modal");
+                cancelButton.innerText = "Cancel";
+                imageContainer.appendChild(cancelButton);
 
-    // Function to load and render PDF based on file name
-    function loadAndRenderPDF(filename) {
-        const url = `{{ asset('forms_and_documents/') }}/${filename}`;
-        
-        console.log('URL for PDF:', url);
-        const loadingTask = pdfjsLib.getDocument(url);
+                var acceptButton = document.createElement('a');
+                
+                acceptButton.className = "btn btn-sm btn-success";
+                acceptButton.style.position = "absolute";
+                acceptButton.style.top = "70px";
+                acceptButton.style.right = "70px";
+                acceptButton.style.zIndex = "10";
+                acceptButton.innerText = "Accept";
+                
 
-        loadingTask.promise.then(function(pdf) {
-            const numPages = pdf.numPages;
-            const pdfViewer = document.getElementById('pdfViewer');
-            pdfViewer.innerHTML = ''; // Clear previous pages if any
+            if (dataId === 'initial_review_form') {
+                acceptButton.href = "{{ route('form_sections_initial_review') }}";
+                imageContainer.appendChild(acceptButton);
 
-            // Function to render a single page
-            function renderPage(pageNumber) {
-                pdf.getPage(pageNumber).then(function(page) {
-                    const scale = 1.5;
-                    const viewport = page.getViewport({ scale });
-                    const canvas = document.createElement('canvas');
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-                    const context = canvas.getContext('2d');
-                    const renderContext = {
-                        canvasContext: context,
-                        viewport: viewport
-                    };
-                    page.render(renderContext);
-                    pdfViewer.appendChild(canvas);
-
-                    // Move to next page if available
-                    if (pageNumber < numPages) {
-                        renderPage(pageNumber + 1);
-                    }
-                });
+                for (var i = 1; i <= 8; i++) {
+                    var img = document.createElement('img');
+                    img.src = `${baseUrl}/InitialReview_page-000${i}.jpg`;
+                    img.alt = "Image Title";
+                    img.className = "img-fluid";
+                    imageContainer.appendChild(img);
+                }
             }
 
-            // Start rendering from the first page
-            renderPage(1);
-        });
-    }
+            if (dataId === '3ContinuingReviewAnnualreportformat') {
+                acceptButton.href = "{{ route('form_sections_continuing_review') }}";
+                imageContainer.appendChild(acceptButton);
 
-    // Event listener for modal show event
-    document.addEventListener('DOMContentLoaded', function() {
-        const modalEl = document.querySelector('.bs-example-modal-xl');
-        modalEl.addEventListener('show.bs.modal', function(event) {
-            const button = event.relatedTarget; // Button that triggered the modal
-            const filename = button.getAttribute('data-file'); // Get data-file attribute value
-            loadAndRenderPDF(filename); // Load and render PDF based on filename
+                for (var i = 1; i <= 3; i++) {
+                    var img = document.createElement('img');
+                    img.src = `${baseUrl2}/3ContinuingReviewAnnualreportformat_page-000${i}.jpg`;
+                    img.alt = "Image Title";
+                    img.className = "img-fluid";
+                    imageContainer.appendChild(img);
+                }
+            }
+
+            // Add more conditions here for different data-id values
+
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalEl = document.querySelector('.bs-example-modal-xl');
+            modalEl.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget; 
+                const filename = button.getAttribute('data-file'); 
+                generateImages(filename);
+            });
         });
-    });
+    
 </script>
     
 
@@ -885,18 +900,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div> -->
             <div class="modal-body">
-            <div class="image-container" style="position: relative;">
-                <a href="{{ route('form_sections') }}" class="btn btn-sm btn-success" style="position: absolute; top: 70px; right: 70px; z-index: 10;">Accept</a>
-                <a href="javascript:void(0);" class="btn btn-link link-danger fw-medium" style="position: absolute; top: 65px; right: 125px; z-index: 10;" data-bs-dismiss="modal"> Cancel</a>
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0001.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0002.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0003.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0004.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0005.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0006.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0007.jpg') }}" alt="Image Title" class="img-fluid">
-                <img src="{{ asset('forms_and_documents/initial_review_form/InitialReview_page-0008.jpg') }}" alt="Image Title" class="img-fluid">
-            </div>
+                <div class="image-container" id="image-container" style="position: relative;">
+                
+                </div>
             </div>
             <div class="modal-footer">
                 

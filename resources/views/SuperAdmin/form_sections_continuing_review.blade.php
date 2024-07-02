@@ -52,7 +52,7 @@
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
                                             <label for="basiInput" class="form-label">Title</label>
-                                            <input type="text" class="form-control" value="Application Form for Initial Review" disabled>
+                                            <input type="text" class="form-control" value="Continuing Review/ Annual report format" disabled>
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -77,36 +77,24 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-2" style="text-align:center; display:block;">
-                <h2  style="background-color:#FDEABE; width:800px; margin: 0 auto;">SECTION A - BASIC INFORMATION</h2>
-            </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">1. ADMINISTRATIVE DETAILS</h4>
-                            <!-- <div class="">
-                                    <ul class="list-inline mb-0">
-                                        <li><a data-action="collapse"></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                        <li><a data-action="expand"><i class="ri-fullscreen-fill"></i></i></a></li>
-                                        <li><a data-action="close"><i class=" ri-close-circle-line xIcon_setting"></i></a></li>
-                                    </ul>
-                            </div> -->
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
                                 <div class="row gy-4">
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
-                                            <label for="basiInput" class="form-label">(a) Name of Organization</label><br>
+                                            <label for="basiInput" class="form-label">Title of study</label><br>
                                             <input type="text" class="form-control" value="" disabled>
                                         </div>
                                     </div>
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
-                                            <label for="basiInput" class="form-label">(b) Name of Ethics Committee</label>
+                                            <label for="basiInput" class="form-label">Principal Investigator (Name, Designation and Affiliation)</label>
                                             <input type="text" class="form-control" value="" disabled>
                                         </div>
                                     </div>
