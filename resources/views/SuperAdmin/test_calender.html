@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FullCalendar Example with Events</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- FullCalendar CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+
+  <!-- Custom CSS for event types -->
+  <style>
+    .event-one-time {
+      background-color: #36a2eb; /* Light blue */
+      border-color: #36a2eb;
+      color: white;
+    }
+    .event-meeting {
+      background-color: #ffcd56; /* Yellow */
+      border-color: #ffcd56;
+      color: black;
+    }
+    .event-recurrence {
+      background-color: #4bc0c0; /* Turquoise */
+      border-color: #4bc0c0;
+      color: white;
+    }
+  </style>
+
+  <!-- FullCalendar JS -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<div class="container mt-5">
+  <div id="calendar"></div>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eventModalLabel">Add Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="eventForm">
+          <div class="form-group">
+            <label for="eventTitle">Event Title</label>
+            <input type="text" class="form-control" id="eventTitle" required>
+          </div>
+          <div class="form-group">
+            <label for="eventType">Event Type</label>
+            <select class="form-control" id="eventType" required>
+              <option value="one-time">One Time</option>
+              <option value="meeting">Meeting</option>
+              <option value="recurrence">Recurrence</option>
+            </select>
+          </div>
+          <div id="oneTimeFields" class="conditional-fields">
+            <div class="form-group">
+              <label for="eventDate">Date</label>
+              <input type="date" class="form-control" id="eventDate">
+            </div>
+            <div class="form-group">
+              <label for="eventStartTime">Start Time</label>
+              <input type="time" class="form-control" id="eventStartTime">
+            </div>
+            <div class="form-group">
+              <label for="eventEndTime">End Time</label>
+              <input type="time" class="form-control" id="eventEndTime">
+            </div>
+          </div>
+          <div id="meetingFields" class="conditional-fields">
+            <div class="form-group">
+              <label for="meetingStartDate">Start Date</label>
+              <input type="date" class="form-control" id="meetingStartDate">
+            </div>
+            <div class="form-group">
+              <label for="meetingEndDate">End Date</label>
+              <input type="date" class="form-control" id="meetingEndDate">
+            </div>
+            <div class="form-group">
+              <label for="meetingStartTime">Start Time</label>
+              <input type="time" class="form-control" id="meetingStartTime">
+            </div>
+            <div class="form-group">
+              <label for="meetingEndTime">End Time</label>
+              <input type="time" class="form-control" id="meetingEndTime">
+            </div>
+            <div class="form-group">
+              <label for="meetingLocation">Location</label>
+              <input type="text" class="form-control" id="meetingLocation">
+            </div>
+            <div class="form-group">
+              <label for="meetingInvitee">Invitee</label>
+              <input type="text" class="form-control" id="meetingInvitee">
+            </div>
+            <div class="form-group">
+              <label for="meetingDescription">Description</label>
+              <textarea class="form-control" id="meetingDescription"></textarea>
+            </div>
+          </div>
+          <div id="recurrenceFields" class="conditional-fields">
+            <div class="form-group">
+              <label for="recurrenceStartDate">Start Date</label>
+              <input type="date" class="form-control" id="recurrenceStartDate">
+            </div>
+            <div class="form-group">
+              <label for="recurrenceEndDate">End Date</label>
+              <input type="date" class="form-control" id="recurrenceEndDate">
+            </div>
+            <div class="form-group">
+              <label for="recurrenceStartTime">Start Time</label>
+              <input type="time" class="form-control" id="recurrenceStartTime">
+            </div>
+            <div class="form-group">
+              <label for="recurrenceEndTime">End Time</label>
+              <input type="time" class="form-control" id="recurrenceEndTime">
+            </div>
+            <div class="form-group">
+              <label for="recurrenceType">Recurrence Type</label>
+              <select class="form-control" id="recurrenceType">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+              </select>
+            </div>
+            <div id="weeklyFields" class="conditional-fields">
+              <div class="form-group">
+                <label for="weekNumber">Week Number</label>
+                <select class="form-control" id="weekNumber">
+                  <option value="1">First Week</option>
+                  <option value="2">Second Week</option>
+                  <option value="3">Third Week</option>
+                  <option value="4">Fourth Week</option>
+                  <option value="5">Fifth Week</option>
+                </select>
+              </div>
+              <label>Days</label>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="monday">
+                <label class="form-check-label" for="monday">Monday</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="tuesday">
+                <label class="form-check-label" for="tuesday">Tuesday</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="wednesday">
+                <label class="form-check-label" for="wednesday">Wednesday</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="thursday">
+                <label class="form-check-label" for="thursday">Thursday</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="friday">
+                <label class="form-check-label" for="friday">Friday</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="saturday">
+                <label class="form-check-label" for="saturday">Saturday</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="sunday">
+                <label class="form-check-label" for="sunday">Sunday</label>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Event</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      editable: true,
+      selectable: true,
+      eventDidMount: function(info) {
+        // Add custom CSS class based on event type
+        if (info.event.extendedProps && info.event.extendedProps.eventType) {
+          var eventType = info.event.extendedProps.eventType;
+          if (eventType === 'one-time') {
+            info.el.classList.add('event-one-time');
+          } else if (eventType === 'meeting') {
+            info.el.classList.add('event-meeting');
+          } else if (eventType === 'recurrence') {
+            info.el.classList.add('event-recurrence');
+          }
+        }
+      },
+      events: [
+        {
+          title: 'Event 1',
+          start: '2024-07-01',
+          extendedProps: {
+            eventType: 'one-time'
+          }
+        },
+        {
+          title: 'Event 2',
+          start: '2024-07-05',
+          end: '2024-07-07', // multi-day event
+          extendedProps: {
+            eventType: 'meeting'
+          }
+        },
+        {
+          title: 'Event 3',
+          start: '2024-07-09T12:30:00',
+          allDay: false, // will render at specific time
+          extendedProps: {
+            eventType: 'recurrence'
+          }
+        }
+      ],
+      dateClick: function(info) {
+        $('#eventDate').val(info.dateStr);
+        $('#meetingStartDate').val(info.dateStr);
+        $('#recurrenceStartDate').val(info.dateStr);
+        $('#eventModal').modal('show');
+      }
+    });
+    calendar.render();
+
+    // Handle event type change
+    $('#eventType').change(function() {
+      var eventType = $(this).val();
+      $('.conditional-fields').hide();
+      if (eventType === 'one-time') {
+        $('#oneTimeFields').show();
+      } else if (eventType === 'meeting') {
+        $('#meetingFields').show();
+      } else if (eventType === 'recurrence') {
+        $('#recurrenceFields').show();
+      }
+    });
+
+    // Handle recurrence type change
+    $('#recurrenceType').change(function() {
+      var recurrenceType = $(this).val();
+      if (recurrenceType === 'weekly') {
+        $('#weeklyFields').show();
+      } else {
+        $('#weeklyFields').hide();
+      }
+    });
+
+    $('#eventForm').on('submit', function(e) {
+      e.preventDefault();
+      var title = $('#eventTitle').val();
+      var eventType = $('#eventType').val();
+      var start, end, location, invitee, description, recurrenceType, days, weekNumber;
+
+      if (eventType === 'one-time') {
+        start = $('#eventDate').val() + 'T' + $('#eventStartTime').val();
+        end = $('#eventDate').val() + 'T' + $('#eventEndTime').val();
+        calendar.addEvent({
+          title: title,
+          start: start,
+          end: end,
+          extendedProps: {
+            eventType: 'one-time'
+          }
+        });
+      } else if (eventType === 'meeting') {
+        start = $('#meetingStartDate').val() + 'T' + $('#meetingStartTime').val();
+        end = $('#meetingEndDate').val() + 'T' + $('#meetingEndTime').val();
+        location = $('#meetingLocation').val();
+        invitee = $('#meetingInvitee').val();
+        description = $('#meetingDescription').val();
+        calendar.addEvent({
+          title: title,
+          start: start,
+          end: end,
+          extendedProps: {
+            eventType: 'meeting',
+            location: location,
+            invitee: invitee,
+            description: description
+          }
+        });
+      } else if (eventType === 'recurrence') {
+        start = $('#recurrenceStartDate').val() + 'T' + $('#recurrenceStartTime').val();
+        end = $('#recurrenceEndDate').val() + 'T' + $('#recurrenceEndTime').val();
+        recurrenceType = $('#recurrenceType').val();
+        weekNumber = $('#weekNumber').val();
+        days = [];
+        $('#weeklyFields input[type="checkbox"]:checked').each(function() {
+          days.push($(this).attr('id'));
+        });
+
+        var startDate = new Date($('#recurrenceStartDate').val());
+        var endDate = new Date($('#recurrenceEndDate').val());
+        var weekNumberInt = parseInt(weekNumber);
+        var occurrences = [];
+
+        for (var d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+          var currentWeekNumber = Math.ceil((d.getDate() - 1) / 7);
+          if (currentWeekNumber === weekNumberInt && days.includes(d.toLocaleString('en-us', {weekday: 'long'}).toLowerCase())) {
+            var occurrence = {
+              title: title,
+              start: new Date(d.getFullYear(), d.getMonth(), d.getDate(), $('#recurrenceStartTime')[0].valueAsNumber / 3600000).toISOString(),
+              end: new Date(d.getFullYear(), d.getMonth(), d.getDate(), $('#recurrenceEndTime')[0].valueAsNumber / 3600000).toISOString(),
+              extendedProps: {
+                eventType: 'recurrence'
+              }
+            };
+            occurrences.push(occurrence);
+          }
+        }
+
+        occurrences.forEach(function(occurrence) {
+          calendar.addEvent(occurrence);
+        });
+      }
+
+      $('#eventModal').modal('hide');
+      $('#eventForm')[0].reset();
+      $('.conditional-fields').hide();
+    });
+  });
+</script>
+</body>
+</html>

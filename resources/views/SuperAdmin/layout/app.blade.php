@@ -1058,9 +1058,11 @@
             </div>
         </div>
     </div>
-    @yield('modal')
+    
 
     @yield('script')
+
+    @yield('modal')
 
     
 </body>
