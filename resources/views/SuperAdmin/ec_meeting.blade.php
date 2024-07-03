@@ -130,32 +130,32 @@
                   }
               }
           },
-          events: [
-              {
-                  title: 'Event 1',
-                  start: '2024-07-01',
-                  extendedProps: {
-                      eventType: 'one-time'
-                  }
-              },
-              {
-                  title: 'Event 2',
-                  start: '2024-07-05',
-                  end: '2024-07-07',
-                  extendedProps: {
-                      eventType: 'meeting'
-                  }
-              },
-              {
-                  title: 'Event 3',
-                  start: '2024-07-09T12:30:00',
-                  end: '2024-07-10T12:30:00',
-                  allDay: false,
-                  extendedProps: {
-                      eventType: 'recurrence'
-                  }
-              }
-          ],
+        //   events: [
+        //       {
+        //           title: 'Event 1',
+        //           start: '2024-07-01',
+        //           extendedProps: {
+        //               eventType: 'one-time'
+        //           }
+        //       },
+        //       {
+        //           title: 'Event 2',
+        //           start: '2024-07-05',
+        //           end: '2024-07-07',
+        //           extendedProps: {
+        //               eventType: 'meeting'
+        //           }
+        //       },
+        //       {
+        //           title: 'Event 3',
+        //           start: '2024-07-09T12:30:00',
+        //           end: '2024-07-10T12:30:00',
+        //           allDay: false,
+        //           extendedProps: {
+        //               eventType: 'recurrence'
+        //           }
+        //       }
+        //   ],
           dateClick: function(info) {
               $('#eventDate').val(info.dateStr);
               $('#meetingStartDate').val(info.dateStr);
