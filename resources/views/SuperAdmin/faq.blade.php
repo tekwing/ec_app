@@ -78,38 +78,19 @@
                 </div>
                 <!-- end page title -->
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xxl-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <div class="flex-grow-1 ms-2">
-                                            <div class="row gy-4">
-                                                <div class="col-xxl-12 col-md-12" style="text-align: right;">
-                                                    <div>
-                                                        <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#addfaq">Add FAQ</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- end card-body -->
-                            </div>
-                        </div><!-- end col -->
-                    </div><!-- end row -->
-                </div><!-- end container -->
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header d-flex justify-content-between align-items-center">
                                 <h4 class="card-title mb-0">Frequently Asked Questions</h4>
-                            </div><!-- end card header -->
+                                <div>
+                                    <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#addfaq">Add FAQ</button>
+                                </div>
+                            </div>
+                            <!-- end card header -->
 
                             <div class="card-body">
                                 <div class="listjs-table" id="customerList">
-
                                     <div class="table-responsive table-card mt-3 mb-1">
                                         <table class="table align-middle table-nowrap" id="customerTable">
                                             <thead class="table-light">

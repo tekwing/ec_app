@@ -64,13 +64,13 @@
                                         <br>
                                         
                                         <div class="external-event fc-event bg-success-subtle text-success" data-class="bg-success-subtle">
-                                            <i class="mdi mdi-checkbox-blank-circle me-2"></i>One Time
+                                            <i class="mdi mdi-checkbox-blank-circle me-2"></i>Event
                                         </div>
                                         <div class="external-event fc-event bg-info-subtle text-info" data-class="bg-info-subtle">
-                                            <i class="mdi mdi-checkbox-blank-circle me-2"></i>Meeting
+                                            <i class="mdi mdi-checkbox-blank-circle me-2"></i>EC Meeting One Time
                                         </div>
                                         <div class="external-event fc-event bg-warning-subtle text-warning" data-class="bg-warning-subtle">
-                                            <i class="mdi mdi-checkbox-blank-circle me-2"></i>Recurrence
+                                            <i class="mdi mdi-checkbox-blank-circle me-2"></i>EC Meeting Recurrence
                                         </div>
                                     </div>
                                 </div>
@@ -106,184 +106,8 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          headerToolbar: {
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay'
-          },
-          editable: true,
-          selectable: true,
-          eventDidMount: function(info) {
-              if (info.event.extendedProps && info.event.extendedProps.eventType) {
-                  var eventType = info.event.extendedProps.eventType;
-                  if (eventType === 'one-time') {
-                      info.el.classList.add('bg-success-subtle');
-                  } else if (eventType === 'meeting') {
-                      info.el.classList.add('bg-info-subtle');
-                  } else if (eventType === 'recurrence') {
-                      info.el.classList.add('bg-warning-subtle');
-                  }
-              }
-          },
-        //   events: [
-        //       {
-        //           title: 'Event 1',
-        //           start: '2024-07-01',
-        //           extendedProps: {
-        //               eventType: 'one-time'
-        //           }
-        //       },
-        //       {
-        //           title: 'Event 2',
-        //           start: '2024-07-05',
-        //           end: '2024-07-07',
-        //           extendedProps: {
-        //               eventType: 'meeting'
-        //           }
-        //       },
-        //       {
-        //           title: 'Event 3',
-        //           start: '2024-07-09T12:30:00',
-        //           end: '2024-07-10T12:30:00',
-        //           allDay: false,
-        //           extendedProps: {
-        //               eventType: 'recurrence'
-        //           }
-        //       }
-        //   ],
-          dateClick: function(info) {
-              $('#eventDate').val(info.dateStr);
-              $('#meetingStartDate').val(info.dateStr);
-              $('#recurrenceStartDate').val(info.dateStr);
-              $('#eventModal').modal('show');
-          },
-          eventClick: function(info) {
-              $('#eventDetailsTitle').text(info.event.title);
-              $('#eventDetailsTime').text('Start: ' + info.event.start.toLocaleString() + (info.event.end ? ', End: ' + info.event.end.toLocaleString() : ''));
-              $('#eventDetailsDescription').text(info.event.extendedProps.description || '');
-              $('#eventDetailsLocation').text(info.event.extendedProps.location || '');
-              $('#eventDetailsModal').modal('show');
-          }
-      });
-      calendar.render();
-  
-      $('.conditional-fields').hide();
-      $('#eventType').change(function() {
-          var eventType = $(this).val();
-          $('.conditional-fields').hide();
-          if (eventType === 'one-time') {
-              $('#oneTimeFields').show();
-          } else if (eventType === 'meeting') {
-              $('#meetingFields').show();
-          } else if (eventType === 'recurrence') {
-              $('#recurrenceFields').show();
-          }
-      });
-  
-      $('#recurrenceType').change(function() {
-          var recurrenceType = $(this).val();
-          if (recurrenceType === 'weekly') {
-              $('#weeklyFields').show();
-          } else {
-              $('#weeklyFields').hide();
-          }
-      });
-  
-      $('#eventForm').on('submit', function(e) {
-          e.preventDefault();
-          var title = $('#eventTitle').val();
-          var eventType = $('#eventType').val();
-          var start, end, location, invitee, description, recurrenceType, days, weekNumber;
-  
-          if (eventType === 'one-time') {
-              start = $('#eventDate').val() + 'T' + $('#eventStartTime').val();
-              end = $('#eventDate').val() + 'T' + $('#eventEndTime').val();
-              calendar.addEvent({
-                  title: title,
-                  start: start,
-                  end: end,
-                  extendedProps: {
-                      eventType: 'one-time'
-                  }
-              });
-          } else if (eventType === 'meeting') {
-              start = $('#meetingStartDate').val() + 'T' + $('#meetingStartTime').val();
-              end = $('#meetingEndDate').val() + 'T' + $('#meetingEndTime').val();
-              location = $('#meetingLocation').val();
-              invitee = $('#meetingInvitee').val();
-              description = $('#meetingDescription').val();
-              calendar.addEvent({
-                  title: title,
-                  start: start,
-                  end: end,
-                  extendedProps: {
-                      eventType: 'meeting',
-                      location: location,
-                      invitee: invitee,
-                      description: description
-                  }
-              });
-          } else if (eventType === 'recurrence') {
-              start = $('#recurrenceStartDate').val() + 'T' + $('#recurrenceStartTime').val();
-              end = $('#recurrenceEndDate').val() + 'T' + $('#recurrenceEndTime').val();
-              recurrenceType = $('#recurrenceType').val();
-              weekNumber = $('#weekNumber').val();
-              days = [];
-              $('#weeklyFields input[type="checkbox"]:checked').each(function() {
-                  days.push($(this).attr('id'));
-              });
-  
-              var startDate = new Date($('#recurrenceStartDate').val());
-              var endDate = new Date($('#recurrenceEndDate').val());
-              var occurrences = [];
-  
-              if (recurrenceType === 'daily') {
-                  for (var d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-                      var occurrence = {
-                          title: title,
-                          start: new Date(d.getFullYear(), d.getMonth(), d.getDate(), $('#recurrenceStartTime')[0].valueAsNumber / 3600000).toISOString(),
-                          end: new Date(d.getFullYear(), d.getMonth(), d.getDate(), $('#recurrenceEndTime')[0].valueAsNumber / 3600000).toISOString(),
-                          extendedProps: {
-                              eventType: 'recurrence'
-                          }
-                      };
-                      occurrences.push(occurrence);
-                  }
-              } else if (recurrenceType === 'weekly') {
-                  var weekNumberInt = parseInt(weekNumber);
-                  for (var d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-                      var firstDayOfMonth = new Date(d.getFullYear(), d.getMonth(), 1);
-                      var currentWeekNumber = Math.ceil(((d - firstDayOfMonth) / (1000 * 60 * 60 * 24) + firstDayOfMonth.getDay() + 1) / 7);
-                      if (currentWeekNumber === weekNumberInt && days.includes(d.toLocaleString('en-us', { weekday: 'long' }).toLowerCase())) {
-                          var occurrence = {
-                              title: title,
-                              start: new Date(d.getFullYear(), d.getMonth(), d.getDate(), $('#recurrenceStartTime')[0].valueAsNumber / 3600000).toISOString(),
-                              end: new Date(d.getFullYear(), d.getMonth(), d.getDate(), $('#recurrenceEndTime')[0].valueAsNumber / 3600000).toISOString(),
-                              extendedProps: {
-                                  eventType: 'recurrence'
-                              }
-                          };
-                          occurrences.push(occurrence);
-                      }
-                  }
-              }
-  
-              occurrences.forEach(function(occurrence) {
-                  calendar.addEvent(occurrence);
-              });
-          }
-  
-          $('#eventModal').modal('hide');
-          $('#eventForm')[0].reset();
-          $('.conditional-fields').hide();
-      });
-  });
-  </script>
+    <script src="{{ asset('js/custom_calendar/calendar.js') }}"></script>
+
 @endsection
 
 @section('modal')
@@ -302,11 +126,18 @@
                         <input type="text" class="form-control" id="eventTitle" name="eventTitle" required>
                     </div>
                     <div class="mb-3">
-                        <label for="eventType" class="form-label">Event Type</label>
-                        <select class="form-select" id="eventType" name="eventType" required>
+                        <label for="eventType" class="form-label">Type</label>
+                        <select class="form-select" name="type" id="Type" required>
                             <option value="" selected disabled>Select Event Type</option>
-                            <option value="one-time">One-Time Event</option>
-                            <option value="meeting">Meeting</option>
+                            <option value="event">Event</option>
+                            <option value="meeting">EC Meeting</option>
+                        </select>
+                    </div>
+                    <div id="EventType" class="conditional-fields-one">
+                        <label for="eventType" class="form-label">Event Type</label>
+                        <select class="form-select" id="eventType" name="eventType" >
+                            <option value="" selected disabled>Select Event Type</option>
+                            <option value="meeting">One-Time</option>
                             <option value="recurrence">Recurrence</option>
                         </select>
                     </div>
@@ -317,34 +148,54 @@
                             <label for="eventDate" class="form-label">Event Date</label>
                             <input type="date" class="form-control" id="eventDate" name="eventDate">
                         </div>
-                        <div class="mb-3">
-                            <label for="eventStartTime" class="form-label">Start Time</label>
-                            <input type="time" class="form-control" id="eventStartTime" name="eventStartTime">
-                        </div>
-                        <div class="mb-3">
-                            <label for="eventEndTime" class="form-label">End Time</label>
-                            <input type="time" class="form-control" id="eventEndTime" name="eventEndTime">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="eventStartTime" class="form-label">Start Time</label>
+                                    <input type="time" class="form-control" id="eventStartTime" name="eventStartTime">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="eventEndTime" class="form-label">End Time</label>
+                                    <input type="time" class="form-control" id="eventEndTime" name="eventEndTime">
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Meeting Fields -->
                     <div id="meetingFields" class="conditional-fields">
-                        <div class="mb-3">
-                            <label for="meetingStartDate" class="form-label">Start Date</label>
-                            <input type="date" class="form-control" id="meetingStartDate" name="meetingStartDate">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                <label for="meetingStartDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" id="meetingStartDate" name="meetingStartDate">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="meetingStartTime" class="form-label">Start Time</label>
+                                    <input type="time" class="form-control" id="meetingStartTime" name="meetingStartTime">
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="meetingStartTime" class="form-label">Start Time</label>
-                            <input type="time" class="form-control" id="meetingStartTime" name="meetingStartTime">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="meetingEndDate" class="form-label">End Date</label>
+                                    <input type="date" class="form-control" id="meetingEndDate" name="meetingEndDate">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="meetingEndTime" class="form-label">End Time</label>
+                                    <input type="time" class="form-control" id="meetingEndTime" name="meetingEndTime">
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="meetingEndDate" class="form-label">End Date</label>
-                            <input type="date" class="form-control" id="meetingEndDate" name="meetingEndDate">
-                        </div>
-                        <div class="mb-3">
-                            <label for="meetingEndTime" class="form-label">End Time</label>
-                            <input type="time" class="form-control" id="meetingEndTime" name="meetingEndTime">
-                        </div>
+                        
                         <div class="mb-3">
                             <label for="meetingLocation" class="form-label">Location</label>
                             <input type="text" class="form-control" id="meetingLocation" name="meetingLocation">
@@ -361,22 +212,48 @@
 
                     <!-- Recurrence Fields -->
                     <div id="recurrenceFields" class="conditional-fields">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="recurrenceStartDate" class="form-label">Start Date</label>
+                                    <input type="date" class="form-control" id="recurrenceStartDate" name="recurrenceStartDate">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="recurrenceStartTime" class="form-label">Start Time</label>
+                                    <input type="time" class="form-control" id="recurrenceStartTime" name="recurrenceStartTime">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="recurrenceEndDate" class="form-label">End Date</label>
+                                    <input type="date" class="form-control" id="recurrenceEndDate" name="recurrenceEndDate">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="recurrenceEndTime" class="form-label">End Time</label>
+                                    <input type="time" class="form-control" id="recurrenceEndTime" name="recurrenceEndTime">
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="mb-3">
-                            <label for="recurrenceStartDate" class="form-label">Start Date</label>
-                            <input type="date" class="form-control" id="recurrenceStartDate" name="recurrenceStartDate">
+                            <label for="recurrenceLocation" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="recurrenceLocation" name="recurrenceLocation">
                         </div>
                         <div class="mb-3">
-                            <label for="recurrenceStartTime" class="form-label">Start Time</label>
-                            <input type="time" class="form-control" id="recurrenceStartTime" name="recurrenceStartTime">
+                            <label for="recurrenceInvitee" class="form-label">Invitee</label>
+                            <input type="text" class="form-control" id="recurrenceInvitee" name="recurrenceInvitee">
                         </div>
                         <div class="mb-3">
-                            <label for="recurrenceEndDate" class="form-label">End Date</label>
-                            <input type="date" class="form-control" id="recurrenceEndDate" name="recurrenceEndDate">
+                            <label for="recurrenceDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="recurrenceDescription" name="recurrenceDescription"></textarea>
                         </div>
-                        <div class="mb-3">
-                            <label for="recurrenceEndTime" class="form-label">End Time</label>
-                            <input type="time" class="form-control" id="recurrenceEndTime" name="recurrenceEndTime">
-                        </div>
+                        
                         <div class="mb-3">
                             <label for="recurrenceType" class="form-label">Recurrence Type</label>
                             <select class="form-select" id="recurrenceType" name="recurrenceType">
@@ -446,24 +323,6 @@
     </div>
 </div>
 
-<!-- <div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="eventDetailsModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="eventDetailsModalLabel">Event Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h6 id="eventDetailsTitle"></h6>
-        <p id="eventDetailsTime"></p>
-        <p id="eventDetailsDescription"></p>
-        <p id="eventDetailsLocation"></p>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="eventDetailsModalLabel" aria-hidden="true">
     <div class="modal-dialog">

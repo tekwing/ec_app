@@ -26,30 +26,19 @@
 @section('content')
     <div class="page-content">
         <div class="container-fluid">
+            <div class="mb-2" style="text-align:center; display:block;">
+                <h2 class="mb-3">Application Form for Initial Review</h2>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">Header</h4>
-                            <!-- <div class="">
-                                    <ul class="list-inline mb-0">
-                                        <li><a data-action="collapse"></a></li>
-                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                        <li><a data-action="expand"><i class="ri-fullscreen-fill"></i></i></a></li>
-                                        <li><a data-action="close"><i class=" ri-close-circle-line xIcon_setting"></i></a></li>
-                                    </ul>
-                            </div> -->
-                        </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
-                                    <div class="col-xxl-12 col-md-12" style="text-align:center;">
-                                    <h2 >Application Form for Initial Review</h2>
-                                    </div>
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;"  style="margin-left:10px; margin-right:10px;">
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
-                                            <label for="basiInput" class="form-label">Logo</label><br>
-                                            <img src="{{ asset('images/ec_logo.png') }}" alt="" height="22">
+                                            <!-- <label for="basiInput" class="form-label">Logo</label><br> -->
+                                            <img src="{{ asset('images/ec_logo.png') }}" alt="" height="35">
                                         </div>
                                     </div>
                                     <div class="col-xxl-6 col-md-6">
@@ -81,19 +70,19 @@
                 </div>
             </div>
             <div class="mb-2" style="text-align:center; display:block;">
-                <h3 class="mb-3">SECTION A - BASIC INFORMATION</h3>
+                <h5 class="mb-3">SECTION A - BASIC INFORMATION</h5>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">1. ADMINISTRATIVE DETAILS</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">1. ADMINISTRATIVE DETAILS</h4>
                             
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
                                             <label for="basiInput" class="form-label">(a) Name of Organization</label><br>
@@ -208,7 +197,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">2. FUNDING DETAILS AND BUDGET</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">2. FUNDING DETAILS AND BUDGET</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -220,7 +209,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
                                             <label for="basiInput" class="form-label">(a) Total estimated budget for site</label>
@@ -263,13 +252,13 @@
                 </div>
             </div>
             <div  style="text-align:center; display:block;">
-                <h3 class="mb-3">SECTION B - RESEARCH RELATED INFORMATION</h3>
+                <h5 class="mb-3">SECTION B - RESEARCH RELATED INFORMATION</h5>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">3. OVERVIEW OF RESEARCH</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">3. OVERVIEW OF RESEARCH</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -281,7 +270,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <div class="col-xxl-12 col-md-12">
                                         <div>
                                             <label for="basiInput" class="form-label">(a) Lay summary (within 300 words):</label>
@@ -383,7 +372,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">4. METHODOLOGY</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">4. METHODOLOGY</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -395,7 +384,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
                                             <label for="basiInput" class="form-label">(a) Sample size/ number of participants (as applicable)</label>
@@ -486,14 +475,14 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-2" style="text-align:center; display:block;">
-                <h2  style="background-color:#FDEABE; width:800px; margin: 0 auto;">SECTION C: PARTICIPANT RELATED INFORMATION </h2>
+            <div style="text-align:center; display:block;">
+                <h5 class="mb-3">SECTION C: PARTICIPANT RELATED INFORMATION </h5>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">5. RECRUITMENT AND RESEARCH PARTICIPANTS</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">5. RECRUITMENT AND RESEARCH PARTICIPANTS</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -505,7 +494,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     
                                     <div class="col-xxl-12 col-md-12">
                                         <div>
@@ -844,7 +833,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">6. BENEFITS AND RISKS</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">6. BENEFITS AND RISKS</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -856,7 +845,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
                                             <label for="basiInput" class="form-label">(a) i. Are there any anticipated physical/social/psychological discomforts/ risk to participants?</label>
@@ -1040,7 +1029,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">7. INFORMED CONSENT</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">7. INFORMED CONSENT</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -1052,7 +1041,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
                                             <label for="basiInput" class="form-label">(a) Are you seeking waiver of consent? If yes, please specify reasons and skip to item no. 8</label>
@@ -1387,7 +1376,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">8. PAYMENT/COMPENSATION</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">8. PAYMENT/COMPENSATION</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -1399,7 +1388,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
                                             <label for="basiInput" class="form-label">(a) Who will bear the costs related to participation and procedures ?</label>
@@ -1558,7 +1547,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">9. STORAGE AND CONFIDENTIALITY</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">9. STORAGE AND CONFIDENTIALITY</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -1570,7 +1559,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
                                             <label for="basiInput" class="form-label">(a) Identifying Information: Study Involves samples/data. If Yes, specify</label>
@@ -1691,14 +1680,14 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-2" style="text-align:center; display:block;">
-                <h2  style="background-color:#FDEABE; width:800px; margin: 0 auto;">SECTION D: OTHER ISSUES</h2>
+            <div style="text-align:center; display:block;">
+                <h5 class="mb-3">SECTION D: OTHER ISSUES</h5>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">10. PUBLICATION, BENEFIT SHARING AND IPR ISSUES</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">10. PUBLICATION, BENEFIT SHARING AND IPR ISSUES</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -1710,7 +1699,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <div class="col-xxl-6 col-md-6">
                                         <div>
                                             <label for="basiInput" class="form-label">(a) Will the results of the study be reported and disseminated? If yes, specify. </label>
@@ -1851,14 +1840,14 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-2" style="text-align:center; display:block;">
-                <h2  style="background-color:#FDEABE; width:800px; margin: 0 auto;">SECTION E: DECLARATION AND CHECKLIST</h2>
+            <div style="text-align:center; display:block;">
+                <h5 class="mb-3">SECTION E: DECLARATION AND CHECKLIST</h5>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">11. DECLARATION (Please tick as applicable)</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">11. DECLARATION (Please tick as applicable)</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -1870,7 +1859,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <!-- Tables Border Colors -->
                                     <table class="table table-bordered border-secondary ">
                                         <thead>
@@ -1994,7 +1983,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">12. CHECKLIST</h4>
+                            <h4 class="card-title mb-0 flex-grow-1" style="margin-left:20px;">12. CHECKLIST</h4>
                             <!-- <div class="">
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"></a></li>
@@ -2006,7 +1995,7 @@
                         </div><!-- end card header -->
                         <div class="card-body">
                             <div class="live-preview">
-                                <div class="row gy-4">
+                                <div class="row gy-4"   style="margin-left:15px; margin-right:15px;">
                                     <!-- Tables Border Colors -->
                                     <table class="table table-bordered border-secondary ">
                                         <tr>
